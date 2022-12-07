@@ -31,9 +31,18 @@ var createScene = function () {
     // Default intensity is 1. Let's dim the light a small amount
     light.intensity = 0.7;
 
-    var newsphere = createSphere(0, 1, 0, 2);
+    var newsphere = createSphere(0, 2, 0, 1);
     newsphere.material = hexMat('#ff0000');
-
+    var anim = {subj: newsphere.position, prop: 'y', val: 0.5};
+    var vals = [0.5, 2];
+    var i = 0;
+    setInterval(() => {
+        anim.val = vals[i]
+        animate(anim, scene, 0.5, false)
+        i = (i + 1) % 2
+    }, 500);
+    // var anim = {subj: newsphere.position, prop: 'y', val: -5};
+    // animate(anim)
     // Our built-in 'ground' shape.
     var ground = BABYLON.MeshBuilder.CreateGround("ground", {width: 6, height: 6}, scene);
 
